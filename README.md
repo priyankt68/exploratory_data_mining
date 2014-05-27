@@ -92,9 +92,9 @@ ers/ids)
 
 
     ### Returns the friends' complete information for an input twitter handle
+    
     def followers_info(username,cursor = -1):
     	result=[]
-    	
     	while(cursor != 0):
     		query = twitter_api.followers.ids(screen_name = username, cursor = cursor, count = 200)
     		for ids in query["ids"]:
