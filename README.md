@@ -103,10 +103,7 @@ PS: Since python doesn't have a defined entry point in contrast with other
 object-oriented languages like C++,Java; " __name__ == __main__ " doesn the
 equivalent activity
 
-
-    
-    
-    if __name__ == "__main__":
+    if __name__ == __main__:
     	twitter_api = oauth_login()
     	reload(sys)
     	sys.setdefaultencoding("utf-8")
