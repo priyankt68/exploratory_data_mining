@@ -1,7 +1,7 @@
 Exploratory Data Mining
 =======================
 
-My experiments in exploratory data mining on various social networking sites such as Twitter, Reddit, Facebook and LinkedIn
+My experiments in Exploratory Data Mining on various social networking sites such as Twitter, Reddit, Facebook and LinkedIn
 
 ## Twitter
 
@@ -20,11 +20,7 @@ My experiments in exploratory data mining on various social networking sites suc
 calls](https://dev.twitter.com/docs)is to perform oAuth Dance procedure for
 authentication purposes.
 * [Twitter API calls](https://dev.twitter.com/docs)
- * [twitter.oauth.OAuth(access_key,access_secret,consumer_key,consumer_secret)](
-https://dev.twitter.com/docs/auth)
-
-
-
+ * [twitter.oauth.OAuth(access_key,access_secret,consumer_key,consumer_secret)](https://dev.twitter.com/docs/auth)
 
     def oauth_login():
     	consumer_key = "xx"
@@ -32,9 +28,7 @@ https://dev.twitter.com/docs/auth)
     	access_key = "xx"
     	access_secret = "xx"
     	auth = twitter.oauth.OAuth(access_key,access_secret,consumer_key,consumer_secret)
-    
     	twitter_api = twitter.Twitter(auth=auth)
-    
     	return twitter_api
     
 
@@ -42,28 +36,22 @@ https://dev.twitter.com/docs/auth)
 
 * Procedure to retrieve friends or twitter handles a specified one follows
 * [ Twitter API calls](https://dev.twitter.com/docs)
-  * [ twitter_api.users.lookup()
-](https://dev.twitter.com/docs/api/1/get/users/lookup)
+  * [ twitter_api.users.lookup()](https://dev.twitter.com/docs/api/1/get/users/lookup)
 
+### Returns the friends' complete information for an input twitter handle
 
-
-    ### Returns the friends' complete information for an input twitter handle
     def friends_info(username):
     	result=[]
     	query = friends_ids(username)
-    
     	for n in range(0, len(query["ids"]), 100):
     		ids = query["ids"][n:n+100]
-    
-    	#creating a sub-query , storing more information about these users
+    #creating a sub-query , storing more information about these users
     		sub_query = twitter_api.users.lookup(user_id = ids)
-        
-        # checking for verified accounts and then updating the verified parameter
+    # checking for verified accounts and then updating the verified parameter
     		for user in sub_query:  
     			verified=" "
     			if user["verified"]:
     				verified= "*"
-    
     	if 'next_cursor' in sub_query:
     		next_cursor = sub_query['next_cursor']
     	else:
@@ -72,14 +60,12 @@ https://dev.twitter.com/docs/auth)
     		previous_cursor = sub_query['previous_cursor']
     	else:
     		previous_cursor = 0
-    
     	while True:
     		result +=[(x) for x in sub_query]
     		if next_cursor == 0 or next_cursor == previous_cursor:
     			break
     		else:
     			cursor = next_cursor
-    
     	return pd.DataFrame(result)  ## Storing it as a pandas dataframe
 
 ### Followers Information
