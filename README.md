@@ -110,11 +110,8 @@ equivalent activity
     	twitter_api = oauth_login()
     	reload(sys)
     	sys.setdefaultencoding("utf-8")
-    
     	### finding friends of a particular username
-    	
     	priyank_friends = friends_info("priyankt68")
-    	
         ### finding followers of a particular username
     	priyank_followers = followers_info("priyankt68")
     	
