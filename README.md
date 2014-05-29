@@ -74,12 +74,11 @@ authentication purposes.
 -  [ Twitter API calls](https://dev.twitter.com/docs)
   * [ twitter_api.followers.ids()](https://dev.twitter.com/docs/api/1/get/follow
 ers/ids)
-  * [ twitter_api.users.lookup()
-](https://dev.twitter.com/docs/api/1/get/users/lookup)
-
-
-    ### Returns the friends' complete information for an input twitter handle
+  * [ twitter_api.users.lookup()](https://dev.twitter.com/docs/api/1/get/users/lookup)
+  * 
+### Returns the friends' complete information for an input twitter handle
     
+
     def followers_info(username,cursor = -1):
     	result=[]
     	while(cursor != 0):
