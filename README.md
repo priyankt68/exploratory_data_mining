@@ -75,7 +75,7 @@ authentication purposes.
   * [ twitter_api.followers.ids()](https://dev.twitter.com/docs/api/1/get/follow
 ers/ids)
   * [ twitter_api.users.lookup()](https://dev.twitter.com/docs/api/1/get/users/lookup)
-  * 
+
 ### Returns the friends' complete information for an input twitter handle
     
 
