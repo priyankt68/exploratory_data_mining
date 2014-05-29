@@ -105,8 +105,8 @@ equivalent activity
 
 
     
-    if __name__ == "__main__":
     
+    if __name__ == "__main__":
     	twitter_api = oauth_login()
     	reload(sys)
     	sys.setdefaultencoding("utf-8")
