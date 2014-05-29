@@ -40,6 +40,7 @@ authentication purposes.
 
 ### Returns the friends' complete information for an input twitter handle
 
+
     def friends_info(username):
     	result=[]
     	query = friends_ids(username)
@@ -99,7 +100,6 @@ ers/ids)
 
 * Main function to make the function calls for and accepting
 [Pandas](http://pandas.pydata.org) dataframes for results
-
 PS: Since python doesn't have a defined entry point in contrast with other
 object-oriented languages like C++,Java; " __name__ == __main__ " doesn the
 equivalent activity
