@@ -40,10 +40,10 @@ from pandas.io.parsers import ExcelFile
 
 def oauth_login():
 	
-	consumer_key = "DpxzdXxFlDiZf4VzYaN3ZrWxY"
-	consumer_secret = "l6tOLAfYnO33qDsPn3Cy4V1NtUA6PVY5CE4oN7uMieZirzNib6"
-	access_key = "445458334-P5yvwYTixeHIXA1kIRn4T8uedHlHCDe6bV7oUBEh"
-	access_secret = "2vp84IQrTrjBW4b9MOppzcFHxxUZ2c02PZDz9bPKFv7UI"
+	consumer_key = "xx"
+	consumer_secret = "xx"
+	access_key = "xx"
+	access_secret = "xx"
 	auth = twitter.oauth.OAuth(access_key,access_secret,consumer_key,consumer_secret)
 
 	twitter_api = twitter.Twitter(auth=auth)
