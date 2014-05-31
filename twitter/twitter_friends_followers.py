@@ -130,11 +130,8 @@ def followers_info(username,cursor = -1):
 
 	return pd.DataFrame(result)
 
-# <markdowncell>
 
-# * Main function to make the function calls for and accepting [Pandas](http://pandas.pydata.org) dataframes for results
-# 
-# PS: Since python doesn't have a defined entry point in contrast with other object-oriented languages like C++,Java; " __name__ == __main__ " doesn the equivalent activity
+
 
 # <codecell>
 def main(argv):
@@ -146,7 +143,15 @@ def main(argv):
 		sys.exit(2)
 
 	return args[1];
+# <codecell>
+# <markdowncell>
 
+# * Main function to make the function calls for and accepting [Pandas](http://pandas.pydata.org) dataframes for results
+# 
+# PS: Since python doesn't have a defined entry point in contrast with other object-oriented languages like C++,Java; " __name__ == __main__ " doesn the equivalent activity
+# <markdowncell>
+
+# <codecell>
 if __name__ == "__main__":
 
 	twitter_api = oauth_login()
@@ -157,13 +162,13 @@ if __name__ == "__main__":
 	username = ''.join(main(sys.argv[1:]))
 		
 	filename = username + ".csv"
+
 	friends = pd.DataFrame(friends_info(username), columns = ["screen_name", "name","description", "favourites_count", "followers_count", "following", "friends_count", "location",  "profile_image_url", "profile_image_url_https", "time_zone", "url"]);
-	friends.to_csv(username+"_friends.csv", sep = "," , header = "True" , index = "True");
+	friends.to_csv("data/" + username+"_friends.csv", sep = "," , header = "True" , index = "True");
 
 	followers = pd.DataFrame(followers_info(username),columns = ["screen_name", "name","description", "favourites_count", "followers_count", "following", "friends_count", "location",  "profile_image_url", "profile_image_url_https", "time_zone", "url"] )		
-	followers.to_csv(username+"_followers.csv", sep = "," , header = "True" , index = "True");
+	followers.to_csv("data/" + username+"_followers.csv", sep = "," , header = "True" , index = "True");
 	
 
 # <codecell>
-
 
