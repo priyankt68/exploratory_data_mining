@@ -18,9 +18,15 @@
 
 import twitter
 import sys
+import getopt
 import json
 import csv
 import pandas as pd
+from pandas.io.parsers import ExcelWriter
+from pandas.io.parsers import ExcelFile
+
+
+
 
 # <markdowncell>
 
@@ -33,10 +39,11 @@ import pandas as pd
 # <codecell>
 
 def oauth_login():
-	consumer_key = "xx"
-	consumer_secret = "xx"
-	access_key = "xx"
-	access_secret = "xx"
+	
+	consumer_key = "DpxzdXxFlDiZf4VzYaN3ZrWxY"
+	consumer_secret = "l6tOLAfYnO33qDsPn3Cy4V1NtUA6PVY5CE4oN7uMieZirzNib6"
+	access_key = "445458334-P5yvwYTixeHIXA1kIRn4T8uedHlHCDe6bV7oUBEh"
+	access_secret = "2vp84IQrTrjBW4b9MOppzcFHxxUZ2c02PZDz9bPKFv7UI"
 	auth = twitter.oauth.OAuth(access_key,access_secret,consumer_key,consumer_secret)
 
 	twitter_api = twitter.Twitter(auth=auth)
@@ -53,7 +60,13 @@ def oauth_login():
 
 # <codecell>
 
+def friends_ids(username):
+	quey = twitter_api.friends.ids(screen_name = username)
+	return quey;
+
+
 ### Returns the friends' complete information for an input twitter handle
+
 def friends_info(username):
 	result=[]
 	query = friends_ids(username)
@@ -124,21 +137,31 @@ def followers_info(username,cursor = -1):
 # PS: Since python doesn't have a defined entry point in contrast with other object-oriented languages like C++,Java; " __name__ == __main__ " doesn the equivalent activity
 
 # <codecell>
+def main(argv):
+	username = ''
+	try:
+		args = getopt.getopt(argv,'')
+	except getopt.GetoptError:
+		print "filename.py <twitter_handle>"
+		sys.exit(2)
 
+	return args[1];
 
 if __name__ == "__main__":
 
 	twitter_api = oauth_login()
 	reload(sys)
+	
 	sys.setdefaultencoding("utf-8")
+	
+	username = ''.join(main(sys.argv[1:]))
+		
+	filename = username + ".csv"
+	friends = pd.DataFrame(friends_info(username), columns = ["screen_name", "name","description", "favourites_count", "followers_count", "following", "friends_count", "location",  "profile_image_url", "profile_image_url_https", "time_zone", "url"]);
+	friends.to_csv(username+"_friends.csv", sep = "," , header = "True" , index = "True");
 
-	### finding friends of a particular username
-	
-	priyank_friends = friends_info("priyankt68")
-	
-    ### finding followers of a particular username
-	priyank_followers = followers_info("priyankt68")
-	
+	followers = pd.DataFrame(followers_info(username),columns = ["screen_name", "name","description", "favourites_count", "followers_count", "following", "friends_count", "location",  "profile_image_url", "profile_image_url_https", "time_zone", "url"] )		
+	followers.to_csv(username+"_followers.csv", sep = "," , header = "True" , index = "True");
 	
 
 # <codecell>
